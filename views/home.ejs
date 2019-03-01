@@ -1,0 +1,139 @@
+<%- include('./head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <script src="/js/story.js"></script>
+ 
+
+</head>
+
+<body>
+    <%- include('./jumbotron.ejs') %>
+    <%- include('./navbar.ejs') %>
+
+
+    <div class="container allContent" style="margin-top:30px">
+        
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h1><center> Últimas novedades</center><br> </h1>
+            <hr class="d-sm-none">
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-4 center">
+            <h2>¡Crea tu propio relato!</h2>
+            <p>Con tus contribuciones podrás ayudar a que historias difíciles tengan el final feliz que se merecen.</p>
+            <hr class="d-sm-none">
+
+            <h3>Mejor valorados</h3>
+            <p>¡Ahí va el TOP tres! </p>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="#">Relato 1</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Relato 2</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Relato 3</a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+          </div>
+
+
+
+        <div class="col-sm-4">
+
+           
+
+            <div class="muchosTags">
+                
+            </div>
+
+            <h2 class="storyTitle "><%= stories[0].title %></h2>
+            <h4><%= stories[0].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[0].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[0].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+            </div>
+            <br>
+            <hr class="d-sm-none">
+
+            <h2 class="storyTitle"><%= stories[2].title %></h2>
+            <h4><%= stories[2].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[2].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[2].id %>"  onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+            </div>
+            <br>
+            <hr class="d-sm-none">
+
+            <h2 class="storyTitle"><%= stories[4].title %></h2>
+            <h4><%= stories[4].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[4].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[4].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+            </div>
+            <br>
+            <hr class="d-sm-none">
+
+            <h2 class="storyTitle"><%= stories[6].title %></h2>
+            <h4><%= stories[6].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[6].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[6].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+            </div>
+            <hr class="d-sm-none">
+
+        </div>
+
+        <div class="col-sm-4">
+            <h2 class="storyTitle"><%= stories[1].title %></h2>
+            <h4><%= stories[1].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[1].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[1].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                </div>
+            <br>
+            <hr class="d-sm-none">
+
+            <h2 class="storyTitle"><%= stories[3].title %></h2>
+            <h4><%= stories[3].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[3].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[3].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                </div>
+            <br>
+            <hr class="d-sm-none">
+
+            <h2 class="storyTitle"><%= stories[5].title %></h2>
+            <h4><%= stories[5].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[5].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[5].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                </div>
+            <br>
+            <hr class="d-sm-none">
+
+            <h2 class="storyTitle"><%= stories[7].title %></h2>
+            <h4><%= stories[7].tagname %></h4>
+            <div class="storyBody">
+                <p ><%= stories[7].body %></p> 
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[7].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                </div>
+            <hr class="d-sm-none">
+
+        </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+<%- include('./footer.ejs') %>  
+<%- include('./end.ejs') %>

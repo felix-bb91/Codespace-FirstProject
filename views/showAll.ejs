@@ -1,0 +1,46 @@
+<%- include('./head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/story.js"></script>
+
+</head>
+
+<body>
+    <%- include('./navbar.ejs') %>
+    <div class="allContent">
+        <div class="container">
+        <h1 class="showAllTitle"><center>Relatos</center></h1><br>
+        <h3 class="showAllTitleSub"><center>Busca entre todos nuestros relatos y prueba a continuar la historia como te gustaría.</center></h3><br>
+        <hr>
+        
+        <div class="row justify-content-center">
+            
+                <div class="">
+                    
+                    
+                    <% if (stories.length > 0) { %>
+                    
+                        <% for (let story of stories) { %> <!--OJO la variable contador (story) es la que usamos abajo. Es diferente a la plantilla home-->
+                            <div class="col-sm-3 center">
+                                <h2 class="storyTitle "><%= story.title %></h2>
+                                <h4><%= story.tagname %></h4>
+                                <div class="storyBody">
+                                    <p ><%= story.body %></p> 
+                                    <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= story.id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                                </div>
+                                <br>
+                                <hr class="d-sm-none">
+                            </div>
+                        <% } %>
+            
+                    
+                
+                    <% } %>
+                    
+                </div>
+          
+        </div>
+    </div>
+    <%- include('./footer.ejs') %>    
+    <%- include('./end.ejs') %>

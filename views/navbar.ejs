@@ -1,0 +1,94 @@
+<nav class="navbar navbar-inverse navbar-fixed-top"  id="navBar"> <!-- data-spy="affix" data-offset-top="290" 340-->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" >Tell the Story</a>
+        </div>
+        <div id="myNavbar">
+        <ul class="nav navbar-nav" >
+            
+            <li class="active"><a href="/home" class="houseIcon"><i class="material-icons ">home</i></a></li>
+
+            
+            <li class="dropdown ">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Relatos<span class="caret"></span></a>
+                <ul class="dropdown-menu menuStory" role="menu" aria-labelledby="menu1">
+                        <li><a href="/showAll">Ver todos</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li data-toggle="collapse" data-target="#tags">
+                            <a href="#" data-toggle="modal" data-target="#myModalTags">Por Tags</a></li>
+
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModalTags">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                
+                                  <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Filtrar por tags:</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                  
+                                  <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="checkbox"><label><input type="checkbox" value="Fantasía"> Fantasía</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Sci-fi"> Sci-fi</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Terror"> Terror</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Drama"> Drama</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Policíaco"> Policíaco</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Noir"> Noir</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Comedia"> Comedia</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Infantil"> Infantil</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Juvenil"> Juvenil</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Aventuras"> Aventuras</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Histórico"> Histórico</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Thriller"> Thriller</label></div>
+                                            <div class="checkbox"><label><input type="checkbox" value="Misterio"> Misterio</label></div>        
+                                        </div>
+                                  
+                                  <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                                        </div>
+                                  
+                                    </div>
+                                
+                                 </div>
+                            </div>
+                            <!--END MODAL-->
+
+
+                        <li><a href="#">Por Autor</a></li>
+                        <li><a href="#">Por Contribuidor</a></li>
+                </ul>
+            </li> 
+            <li><a href="/whoWeAre">¿Quiénes somos?</a></li>
+
+        </ul>
+
+        <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por título" name="search">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+            
+            <!--href está en carpeta js publica navbar.js-->
+            <li><a class="myProfileNav2" href=""><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
+
+            <li><a href="/"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+        </ul>
+    </div>
+    </div>
+</nav>

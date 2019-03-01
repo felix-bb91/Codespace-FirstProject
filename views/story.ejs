@@ -1,0 +1,96 @@
+<%- include('./head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <%- include('./navbar.ejs') %>
+
+
+    <div class="containerStory">
+
+        <div class="row completeStory">
+
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>Autor: @NOMBREAUTOR</p>
+                        <p>Fecha de publicación: <%= story[0].uploaded_date %> EDITAR??</p>
+                        <p>Contribuidores: @NOMBREAUTOR GENERADOS AUTOMATICAMENTE</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12 storyTitle">
+                        <p> <center> <%= story[0].title %> </center></p><hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 storyCompleteBody">
+                        <p><%= story[0].body %> </p><hr>
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 storyBody">
+                        <p>  BOTON DE AÑADIR SECCION</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 storyBody">
+                        <p>  AQUI IRAN LAS SECCIONES</p>
+                    </div>
+                </div>
+
+            </div>
+
+    
+
+            <div class="col-sm-3">
+
+
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('./footer.ejs') %>    
+    <%- include('./end.ejs') %>

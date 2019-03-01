@@ -1,0 +1,68 @@
+<%- include('./head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+
+  <div class="jumbotron jumbotronRegister">
+    <h1><center>¡Regístrate ahora totalmente <b>gratis</b>!</center></h1><br>      
+    <p class="textRegister">Regístrate ahora y tendrás acceso ilimitado a gran cantidad de historias, podrás conocer personas con la misma imaginación que tú ¡o más! Y lo mejor es que mientras te diviertes estarás contribuyendo con una buena causa. ¿A qué estás esperando? Completa el siguiente formulario y forma parte de nosotros.</p>
+  </div>
+
+  <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <h1>¡Regístrate ahora totalmente <b>gratis</b>!</h1>
+      </div>
+      <div class="col-sm-4"></div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="email">Nombre de usuario:</label>
+                <input type="text" class="form-control" name="user">
+            </div>
+          <div class="form-group">
+                <label for="email">Contraseña:</label>
+                <input type="text" class="form-control" name="password">
+          </div>
+          <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="text" class="form-control" name="mail">
+          </div>
+          <div class="form-group">
+                <label for="email">País:</label>
+                <input type="text" class="form-control" name="country">
+          </div>
+          <div class="form-group">
+                <label for="email">Ciudad:</label>
+                <input type="text" class="form-control" name="city">
+          </div><br>
+          <input type="submit" value="Enviar" class="btn btn-primary">
+          <a href="/" class="btn btn-danger" role="button">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+<%- include('./end.ejs') %>

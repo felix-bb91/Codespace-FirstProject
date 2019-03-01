@@ -1,0 +1,93 @@
+<%- include('./head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="./js/myProfile.js" charset="UTF-8"></script>
+</head>
+
+<body>
+    <%- include('./navbar.ejs') %>
+    <div class="allContent">
+    <h1 class="profileName"><center>Perfil de @<%= user.username %></center></h1><br>
+ 
+    <div class="container">
+
+        <div class="row">
+            <div class="row firstSection center">
+                <div class="col-sm-4 startStorySection">
+                    <p>¿Te animas a empezar una historia?  </p>
+                    <p>¡Escribe sobre la idea más loca que tengas! </p><br>
+                    <%- include('./addStoryModal.ejs') %>
+                </div>
+                <div class="col-sm-4 profilePicture ">
+                    <img class="photoProfile img-circle" src="<%= user.imgURL %>" alt="not profile picture" onerror='this.src="https://utulsa.edu/wp-content/uploads/2018/08/generic-avatar.jpg"'>
+                </div>
+                <div class="col-sm-4 center">
+                    <h2>Sobre mi:</h2><br>
+                    <p class="infoAboutMe">Añade aquí una pequeña descripción sobre ti!!</p><br>
+                </div>
+
+            </div>
+
+
+
+            <div class="row center">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="profile" id="<%= token %>">         
+                            <table class="table table-dark table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre de usuario: </td>
+                                        <td id="username"><%= user.username %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dirección de correo: </td>
+                                        <td id="mail"><%= user.mail %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>País: </td>
+                                        <td id="country"><%= user.country %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ciudad: </td>
+                                        <td id="city"><%= user.city %></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            </div>
+                <div class="col-sm-3"></div>
+            </div>
+
+
+
+            <div class="row removeProfile center">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-2">
+                        <form method="POST" action="/remove/<%= user.id %>">
+                            <input type="submit" class="btn btn-danger" value="Eliminar perfil">
+                        </form>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2">
+                        <%- include('./editProfile.ejs') %>
+                    </div>
+                    <div class="col-sm-3"></div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+        
+
+    </div>
+
+<%- include('./footer.ejs') %>    
+<%- include('./end.ejs') %>

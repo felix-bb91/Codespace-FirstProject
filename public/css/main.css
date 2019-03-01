@@ -1,0 +1,239 @@
+body{
+    background-color: rgb(250, 250, 250);
+}
+
+.noDefault{
+	background: none;
+	color: rgb(145, 143, 143);
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.jumbotron{
+	margin-top: 8rem;
+	background: linear-gradient(to bottom right, #ff6600 0%, #ff33cc 100%);
+	color: rgb(245, 244, 244);
+
+}
+.jumbotronHome{
+	padding:0.8rem;
+}
+.jumbotronRegister{
+	margin-top: 0rem;
+	background: linear-gradient(to bottom right, #ff6600 0%, #ff33cc 100%);
+	color: rgb(245, 244, 244);
+	margin-bottom: 3.5rem;
+	padding:0.8rem;
+}
+
+.textRegister{
+	margin-left: 6rem;
+	margin-right: 6rem;
+}
+
+
+.newSession{
+	/*max-width: 100%;*/
+	/*margin-top: 2rem;*/
+	margin-top: 0rem;
+	background: linear-gradient(to bottom right, #ff6600 0%, #ff33cc 100%);
+	color: rgb(245, 244, 244);
+	/*vertical-align: middle;*/
+	margin-bottom: 2rem;
+	padding: 0.5rem;
+
+}
+
+
+
+.linkRegister{
+	margin-top: 2rem;
+	background: rgb(36, 35, 35);
+	color: rgb(245, 244, 244);
+
+}
+
+.linkRegisterLetter{
+	color: rgb(224, 57, 174);
+}
+
+.storyTitle{
+	font-family: 'Bungee Inline', cursive;
+	font-size: 2.8rem;
+}
+
+
+
+.affix{
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.allContent{
+	margin-top: 8rem;
+}
+
+
+/*-------------------Story Body --------------------- */
+.storyBody {
+	max-height: 15rem;
+	position: relative;
+	overflow: hidden;
+}
+.storyBody .read-more { 
+	position: absolute; 
+	bottom: 0; 
+	left: 0;
+	width: 100%; 
+	text-align: center; 
+	margin: 0; padding: 30px 0; 
+	  
+	/* "transparent" only works here because == rgba(0,0,0,0) */
+	background-image: linear-gradient(to bottom, transparent, rgb(255, 255, 255));
+}
+
+.read-moreButton{
+	display: inline-block;
+	border-radius: 0.5rem;
+	/*background-color: #f4511e;*/
+	/*background: linear-gradient(to bottom right, #ff6600 0%, #ff33cc 100%);*/
+	background: #ff33cc;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 1.4rem;
+	padding: 0.3rem;
+	width: 13rem;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 0.5rem;
+}
+	
+.read-moreButton span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+	
+.read-moreButton span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+	
+.read-moreButton:hover span {
+	padding-right: 25px;
+}
+	
+.read-moreButton:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+
+
+
+/*--------------------------------------------------- */
+
+.containerStory{
+	margin-top: 10rem;
+	margin-right: 0;
+	margin-left: 0;
+	margin-bottom: 0rem;
+
+
+
+}
+
+.completeStory{
+
+	padding: 0rem;
+}
+
+.storyCompleteBody{
+	max-height: 100%;
+	line-height: 2.2;
+}
+.storyCompleteBody p::first-letter { 
+	font-size: 250%;
+	color: #ff33cc;
+	font-family: 'Great Vibes', cursive;
+	margin-left: 5rem;
+	height: 70%;
+	
+}
+
+
+
+
+
+.profilePicture{
+	width: 25rem;
+	height: 25rem;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 50%;
+	/* Para cuando ocupan mas del div pero no quieres que se vea lo que sobra */	
+	overflow: hidden;
+	
+	
+	
+}
+
+.photoProfile{
+    max-width: 130%;
+    max-height: 130%;
+	display: block;
+	
+	/* Para centrar*/
+	position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.profileName{
+	margin: 4rem;
+}
+
+.startStorySection{
+	
+}
+
+.firstSection{
+	margin-bottom: 5.5rem;
+	border-style: solid;
+	border-color: rgba(173, 173, 173, 0.253);
+	border-width:0.08rem;
+	padding: 2rem;
+	
+}
+
+.removeProfile{
+	margin-top:4rem;
+}
+
+.editProfileSection{
+
+}
+.center{
+	text-align: center;
+}
+
+
+.shoAllContainer{
+	margin: 2rem;
+
+}
+
+
+
