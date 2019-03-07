@@ -53,11 +53,16 @@ body{
 	margin-top: 2rem;
 	background: rgb(36, 35, 35);
 	color: rgb(245, 244, 244);
-
+	height: 5rem;
+	font-size: 2rem;
+	text-align: center;
+	
 }
 
 .linkRegisterLetter{
 	color: rgb(224, 57, 174);
+	font-size: 3rem;
+	padding: 1rem;
 }
 
 .storyTitle{
