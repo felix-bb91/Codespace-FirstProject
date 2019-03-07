@@ -6,7 +6,7 @@ const crypt = require('../util/crypt-util'); // usar el módulo crypt
 const Token = require('../util/Token'); // Cargamos el token
 const StatisticsService = require('../services/statisticsService');// Cargamos el servicio de mongo 
 const UserService = require('../services/usersService');
-const StoriesService = require('../services/storiesService');
+
 
 
 
@@ -66,6 +66,7 @@ exports.postLogin = (req, res, next) => {
                                 AllUsersInfo : users, 
                                 token : myToken,
                                 AllStoriesInfo : stories,
+                                userId: row[0].id,
                             }); 
         
                         })
@@ -106,7 +107,8 @@ exports.postLogin = (req, res, next) => {
 
                 else{ // Para React - Necesitará un jSon
                     const jLogin = {
-                        token : myToken
+                        token : myToken,
+                        userId: row[0].id,
                     }
                     res.send(jLogin);
                 }

@@ -70,6 +70,7 @@ exports.postStory = (req, res, next) => {
 exports.getAllStoriesAndTags = (req, res, next) => {
 
     token = req.params.token;
+    userId = req.userId;
 
     Story.getAllStoriesAndTags()
     .then(([rows]) => {
@@ -79,7 +80,8 @@ exports.getAllStoriesAndTags = (req, res, next) => {
         res.render('home', { 
             pageTitle: 'home',
             stories: uniqueIdStories, /* Array de objetos que puedo usar en la plantilla que tiene la info de TODOS los relatos Si un Relato tiene más de un tag ya NO aparecerá como dos objetos diferentes. */
-            token: token
+            token: token,
+            userId : userId,
         });
     })
     

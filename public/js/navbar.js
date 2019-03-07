@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    
     let userIdX = StorageManager.bringUserId();
     var token = document.getElementsByClassName("myToken")[0].id;
 
