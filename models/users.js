@@ -66,18 +66,17 @@ module.exports = class User {
         return db.execute('SELECT * FROM users WHERE username = ? AND password = ?',[user, pass]);
     }
 
+
     static removeUser(id){
         return db.execute('DELETE FROM users WHERE users.id = ?', [id]);
     }
 
+    static blockAccess(id){
+        return db.execute('UPDATE users SET enableAccess = false WHERE users.id = ?',[id]);
+    }
 
+ 
     
-
-
-
-
-
-
 
 
 }

@@ -16,7 +16,14 @@ module.exports = class Section {
         );
     }
 
-    // No necesito instancia para llamar a este método
+
+    static getAllSectionsByStoryID(StoryId) {
+        return db.execute('SELECT * from section WHERE story_id = ? ORDER BY uploaded_date ASC;', [StoryId]);
+    }
+    
+
+
+
     static getSectionByID(id) {
         return db.execute('SELECT * FROM section WHERE section.id = ?', [id]);
     }
@@ -33,7 +40,9 @@ module.exports = class Section {
         return db.execute('SELECT * FROM section WHERE section.author_id = ? order by uploaded_date DESC', [author_id]);
     }
 
-
+    static setLikeAnonymousSection(id){
+        return db.execute('UPDATE section SET author_id = ?  WHERE author_id= ?',[2, id]);
+    }
 
 
 

@@ -3,6 +3,9 @@
 const User = require('../models/users');
 const Story = require('../models/story');
 const Tags = require('../models/tags');
+const Token = require('../util/Token'); // Cargamos el token
+const TagsInArray = require('../util/reagrupTagsOneStory'); 
+const Section = require('../models/section');
 
 
 // Save a Story
@@ -50,10 +53,12 @@ exports.postStory = (req, res, next) => {
 
     })
     .then(() => {
-        res.render('myProfile', { 
-            pageTitle: 'myProfile',
-            user: userRow // Variable que puedo usar en la plantilla que tiene la info del usuario
-        });
+        
+        let token = Token.buildToken(userRow.id);
+        
+        /* Irá a la ruta especificada en el redirect y hará lo que diga
+        el router, en este caso verificar el token y cargar todas las historias */
+        res.redirect(`/home/${token}`);
     })  
     .catch(err => console.log(err));
 };
@@ -64,60 +69,17 @@ exports.postStory = (req, res, next) => {
 // Trae todas las historias en formato objeto con todos sus tags en un array
 exports.getAllStoriesAndTags = (req, res, next) => {
 
+    token = req.params.token;
+
     Story.getAllStoriesAndTags()
     .then(([rows]) => {
 
-        // console.log(row);
-
-        const stories = rows;
-
-        /* Si un relato tiene varios tags, aparecerán tantos objetos de ese relato como tags tenga, todos iguales salvo el tagname. Para ellos necesitamos reconvertir esa informacion de forma que por cada relato únicamente haya un objeto el cual tenga el atributo tagname en formato array con todos los tags que le correspondan. */
-
-        // El objeto Set te permite almacenar valores ÚNICOS de cualquier tipo
-        // [...X] ya que no sabemos qué cantidad de elementos va a tener el array
-        // Map realiza una operacion en cada uno de los valores y lo devuelve
-        const distinctIds = [... new Set(stories.map( x => x.id))];
-        // El map nos devovlería un array con todos los ids.
-        // Set nos creará el array de ids cogiendo únicamente aquellos que sean distintos
-        // Resultado: Crea un array indeterminado de valores DIFERENTES donde, por cada componente, guardará el id
-        //console.log("distinctIds: ");
-        //console.log(distinctIds); // Resultado [80, 75] --> Tenemos todos los ids que existen SIN repetirlos
-
-        const uniqueIdStories = []; 
-        // Array de objetos donde guardaremos los objetos Story sin repetir y que contendrá TODOS los tagas de cada uno
-
-        // El método forEach() ejecuta la función indicada una vez por cada elemento del array.
-        distinctIds.forEach(id => { // Cada elemento es un id, por eso lo llama id aquí, no es más que un nombre
-            // hará este bucle n veces, donde n es el número de ids diferentes  
-            uniqueIdStories // vamos a rellenarlo
-            .push(stories.filter((element) => { // Filter devuelve los valores de stories que cumplen la condicion
-                return element.id === id;
-            }) // Ha copiado todos los objetos de stories que tuviesen el id de la iteración en la que estamos dentro de uniqueIdStories
-
-            // Ahora vamos a reducir los que estén repetidos a uno solo pero añadiendo los tags nuevos que aparezcan
-            .reduce((uniqueIdStoriesArray, storyElement)=> {
-                // Reduce aplica una funcion acumulada que acaba devolviendo un solo valor
-                // array.reduce(function(total, currentValue), initialValue)
-                // total --> es en un principio el valor inicial (el primero)
-                // initialValue --> Optional. A value to be passed to the function as the initial value
-                uniqueIdStoriesArray.id = storyElement.id;
-                uniqueIdStoriesArray.title = storyElement.title;
-                uniqueIdStoriesArray.author_id = storyElement.author_id;
-                uniqueIdStoriesArray.body = storyElement.body;
-                uniqueIdStoriesArray.tagname.push(storyElement.tagname);
-                return uniqueIdStoriesArray;
-            }, {tagname: []}));
-        });
-        // console.log("Resultado final: ");
-        // console.log(uniqueIdStories);
-
-
-
+        uniqueIdStories = TagsInArray.createUniqueStoriesWithAllTags(rows);
 
         res.render('home', { 
             pageTitle: 'home',
-            stories: uniqueIdStories /* Array de objetos que puedo usar en la plantilla que tiene la info de TODOS los relatos Si un Relato tiene más de un tag ya NO aparecerá como dos objetos diferentes. */
-            
+            stories: uniqueIdStories, /* Array de objetos que puedo usar en la plantilla que tiene la info de TODOS los relatos Si un Relato tiene más de un tag ya NO aparecerá como dos objetos diferentes. */
+            token: token
         });
     })
     
@@ -129,37 +91,38 @@ exports.getAllStoriesAndTags = (req, res, next) => {
 
 
 
-
-
-
-
-
 // Get one Story
 exports.getAStory = (req, res, next) => {
 
     const idStory = req.params.idStory; // Lo sacará de la URL - mira el js/story.js
-    console.log(idStory);
+    idUser = req.userId;
+
     Story.getStoryByID(idStory)
     .then(([row]) => {
 
         const story = row;
-        //console.log(story);
+        return Section.getAllSectionsByStoryID(idStory)
+        .then(([rowSection]) =>{
 
-        res.render('story', { 
-            pageTitle: 'story',
-            story: story 
-            // Da un objeto en el que la primera (y única fila) es la que tiene la info
+            const sections = rowSection;
+            //console.log(sections[0]); // Te dará el primero de la lista
             
-        });
+            res.render('story', { 
+                pageTitle: 'story',
+                story: story,
+                sections: sections,
+                // Da un objeto en el que la primera (y única fila) es la que tiene la info
+                token : Token.buildToken(idUser)
+            });
+        }) 
 
     })
-    .catch(err => console.log(err));
 
 
+
+
+      
 };
-
-
-
 
 
 
@@ -174,55 +137,14 @@ exports.getAllStoriesAndTagsShowAll = (req, res, next) => {
     Story.getAllStoriesAndTags()
     .then(([rows]) => {
 
-        // console.log(row);
+        uniqueIdStories = TagsInArray.createUniqueStoriesWithAllTags(rows);
 
-        const stories = rows;
-
-        /* Si un relato tiene varios tags, aparecerán tantos objetos de ese relato como tags tenga, todos iguales salvo el tagname. Para ellos necesitamos reconvertir esa informacion de forma que por cada relato únicamente haya un objeto el cual tenga el atributo tagname en formato array con todos los tags que le correspondan. */
-
-        // El objeto Set te permite almacenar valores ÚNICOS de cualquier tipo
-        // [...X] ya que no sabemos qué cantidad de elementos va a tener el array
-        // Map realiza una operacion en cada uno de los valores y lo devuelve
-        const distinctIds = [... new Set(stories.map( x => x.id))];
-        // El map nos devovlería un array con todos los ids.
-        // Set nos creará el array de ids cogiendo únicamente aquellos que sean distintos
-        // Resultado: Crea un array indeterminado de valores DIFERENTES donde, por cada componente, guardará el id
-        //console.log("distinctIds: ");
-        //console.log(distinctIds); // Resultado [80, 75] --> Tenemos todos los ids que existen SIN repetirlos
-
-        const uniqueIdStories = []; 
-        // Array de objetos donde guardaremos los objetos Story sin repetir y que contendrá TODOS los tagas de cada uno
-
-        // El método forEach() ejecuta la función indicada una vez por cada elemento del array.
-        distinctIds.forEach(id => { // Cada elemento es un id, por eso lo llama id aquí, no es más que un nombre
-            // hará este bucle n veces, donde n es el número de ids diferentes  
-            uniqueIdStories // vamos a rellenarlo
-            .push(stories.filter((element) => { // Filter devuelve los valores de stories que cumplen la condicion
-                return element.id === id;
-            }) // Ha copiado todos los objetos de stories que tuviesen el id de la iteración en la que estamos dentro de uniqueIdStories
-
-            // Ahora vamos a reducir los que estén repetidos a uno solo pero añadiendo los tags nuevos que aparezcan
-            .reduce((uniqueIdStoriesArray, storyElement)=> {
-                // Reduce aplica una funcion acumulada que acaba devolviendo un solo valor
-                // array.reduce(function(total, currentValue), initialValue)
-                // total --> es en un principio el valor inicial (el primero)
-                // initialValue --> Optional. A value to be passed to the function as the initial value
-                uniqueIdStoriesArray.id = storyElement.id;
-                uniqueIdStoriesArray.title = storyElement.title;
-                uniqueIdStoriesArray.author_id = storyElement.author_id;
-                uniqueIdStoriesArray.body = storyElement.body;
-                uniqueIdStoriesArray.tagname.push(storyElement.tagname);
-                return uniqueIdStoriesArray;
-            }, {tagname: []}));
-        });
-        // console.log("Resultado final: ");
-        // console.log(uniqueIdStories);
-
+        const idUser = req.userId; 
 
         res.render('showAll', { 
             pageTitle: 'showAll',
-            stories: uniqueIdStories /* Array de objetos que puedo usar en la plantilla que tiene la info de TODOS los relatos Si un Relato tiene más de un tag ya NO aparecerá como dos objetos diferentes. */
-            
+            stories: uniqueIdStories, /* Array de objetos que puedo usar en la plantilla que tiene la info de TODOS los relatos Si un Relato tiene más de un tag ya NO aparecerá como dos objetos diferentes. */
+            token : Token.buildToken(idUser),
         });
     })
     

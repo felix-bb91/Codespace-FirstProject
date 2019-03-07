@@ -1,11 +1,13 @@
 <%- include('./head.ejs') %>
-    <link rel="stylesheet" href="/css/forms.css">
     <script src="/js/story.js"></script>
  
 
 </head>
 
 <body>
+
+   
+
     <%- include('./jumbotron.ejs') %>
     <%- include('./navbar.ejs') %>
 
@@ -22,6 +24,7 @@
           <div class="col-sm-4 center">
             <h2>¡Crea tu propio relato!</h2>
             <p>Con tus contribuciones podrás ayudar a que historias difíciles tengan el final feliz que se merecen.</p>
+            <%- include('./addStoryModal.ejs') %>
             <hr class="d-sm-none">
 
             <h3>Mejor valorados</h3>
@@ -54,7 +57,7 @@
             <h4><%= stories[0].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[0].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[0].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[0].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
             </div>
             <br>
             <hr class="d-sm-none">
@@ -63,7 +66,7 @@
             <h4><%= stories[2].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[2].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[2].id %>"  onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[2].id %>"  onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
             </div>
             <br>
             <hr class="d-sm-none">
@@ -72,7 +75,7 @@
             <h4><%= stories[4].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[4].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[4].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[4].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
             </div>
             <br>
             <hr class="d-sm-none">
@@ -81,7 +84,7 @@
             <h4><%= stories[6].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[6].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[6].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[6].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
             </div>
             <hr class="d-sm-none">
 
@@ -92,7 +95,7 @@
             <h4><%= stories[1].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[1].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[1].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[1].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
                 </div>
             <br>
             <hr class="d-sm-none">
@@ -101,7 +104,7 @@
             <h4><%= stories[3].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[3].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[3].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[3].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
                 </div>
             <br>
             <hr class="d-sm-none">
@@ -110,7 +113,7 @@
             <h4><%= stories[5].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[5].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[5].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[5].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
                 </div>
             <br>
             <hr class="d-sm-none">
@@ -119,7 +122,7 @@
             <h4><%= stories[7].tagname %></h4>
             <div class="storyBody">
                 <p ><%= stories[7].body %></p> 
-                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[7].id %>" onclick="getTheId(this);"><span><b>Read More</b> </span></a></p>
+                <p class="read-more"><a href="/story" class="button read-moreButton readMore" id="<%= stories[7].id %>" onclick="getTheId(this);"><span><b>Leer más</b> </span></a></p>
                 </div>
             <hr class="d-sm-none">
 

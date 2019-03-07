@@ -6,6 +6,8 @@
 </head>
 
 <body>
+    
+   
     <%- include('./navbar.ejs') %>
     <div class="allContent">
     <h1 class="profileName"><center>Perfil de @<%= user.username %></center></h1><br>
@@ -23,8 +25,8 @@
                     <img class="photoProfile img-circle" src="<%= user.imgURL %>" alt="not profile picture" onerror='this.src="https://utulsa.edu/wp-content/uploads/2018/08/generic-avatar.jpg"'>
                 </div>
                 <div class="col-sm-4 center">
-                    <h2>Sobre mi:</h2><br>
-                    <p class="infoAboutMe">Añade aquí una pequeña descripción sobre ti!!</p><br>
+                    <h2>Mis relatos:</h2><br>
+                    <p class="infoAboutMe">Aquí irá un listado de los relatos con anchor al relato.</p><br>
                 </div>
 
             </div>
@@ -34,7 +36,9 @@
             <div class="row center">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-                    <div class="profile" id="<%= token %>">         
+                    <div class="profileId" id="<%= user.id %>" style="display: none;"></div>  
+                    <div class="profile" id="<%= token %>"> 
+                          
                             <table class="table table-dark table-hover">
                                 <tbody>
                                     <tr>
@@ -65,7 +69,7 @@
             <div class="row removeProfile center">
                     <div class="col-sm-3"></div>
                     <div class="col-sm-2">
-                        <form method="POST" action="/remove/<%= user.id %>">
+                        <form method="POST" action="/myProfile/remove/<%= token %>">
                             <input type="submit" class="btn btn-danger" value="Eliminar perfil">
                         </form>
                     </div>

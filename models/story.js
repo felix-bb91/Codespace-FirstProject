@@ -54,11 +54,11 @@ module.exports = class Story {
         
     }
 
-
+    static setLikeAnonymousStory(id){
+        return db.execute('UPDATE story SET author_id = ?  WHERE author_id = ?',[2, id]);
+    }
 
     
-
-
 
 
 

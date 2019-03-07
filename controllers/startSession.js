@@ -4,6 +4,11 @@ const User = require('../models/users');
 const crypt = require('../util/crypt-util'); // usar el módulo crypt
 // npm install crypto --save
 const Token = require('../util/Token'); // Cargamos el token
+const StatisticsService = require('../services/statisticsService');// Cargamos el servicio de mongo 
+const UserService = require('../services/usersService');
+const StoriesService = require('../services/storiesService');
+
+
 
 
 // Show the login page
@@ -38,28 +43,78 @@ exports.postLogin = (req, res, next) => {
     .then(([row]) => {
         //console.log(row);   // Vemos que da un array de objetos
 
-        if (row[0]){ // Si recibo algo en id es que el user existe
-            //console.log("ok");
-
+        if (row[0] && row[0].enableAccess ){ // Si recibo algo en id es que el user existe
+            
             // User y pass ya son correctos --> Creo el token
-            let myToken = Token.buildToken(row[0].id); // usamos el dato que es único para cada usuario a la hora de construir el token.    
+            let myToken = Token.buildToken(row[0].id); // usamos el dato que es único para cada usuario a la hora de construir el token.  
 
-            if(authType == "form"){
-                res.render('myProfile', { // Home
-                    pageTitle: 'myProfile',
-                    user: row[0], // Variable que puedo usar en la plantilla que tiene la info del usuario
-                    token : myToken
+
+        //--------------- Si es el ADMIN que vaya al panel del admin-------
+            if(row[0].id === 1){
+               
+                StoriesService.getAllStories()
+                .then((stories) => {
+                    UserService.getAllUsers()
+                    .then((users) => {
+                        //console.log(users);
+                        StatisticsService.getAllAccessStatistics()
+                        .then((results) =>{
+                            //console.log(results);
+                            res.render('adminHome', { 
+                                pageTitle: 'adminHome',
+                                AllAccessStatistics : results,
+                                AllUsersInfo : users, 
+                                token : myToken,
+                                AllStoriesInfo : stories,
+                            }); 
+        
+                        })
+        
+                    })
+                })
+               
+                .catch(err => {console.log(err);});
+
+                 
+            }
+
+
+        //--------------- Si NO ES ADMIN -----------------------
+            else {
+
+                // Guardo el inicio de sesión en mongo creando un nuevo documento
+                StatisticsService.saveLogOrRegisterDate(row[0].id, 1) //regOrLog: 0: Registro - 1: Login
+                .then(() => {
+                    //console.log('Documento guardado en Mongo');
+                })
+                .catch(err => {
+                    console.log(err);
                 });
+
+
+
+                if(authType == "form"){
+                    /*
+                    res.render('myProfile', { 
+                        pageTitle: 'myProfile',
+                        user: row[0], // Variable que puedo usar en la plantilla que tiene la info del usuario
+                        token : myToken
+                    });
+                    */
+                    res.redirect(`/home/${myToken}`);
+                }
+
+                else{ // Para React - Necesitará un jSon
+                    const jLogin = {
+                        token : myToken
+                    }
+                    res.send(jLogin);
+                }
+
+
             }
 
-            else{ // Para React - Necesitará un jSon
-                const jLogin = {
-                    token : myToken
-                }
-                res.send(jLogin);
-            }
-            
-            
+   
        }
        else { // Si no hay usuario con esos datos:
         
@@ -113,7 +168,21 @@ exports.postRegister = (req, res, next) => {
     //console.log(user);
     user
     .registerUser()
-    .then(() => {
+    .then(([row]) => { // La respuesta me fijo con un console.log que me da el id del usuario
+
+        //console.log(row.insertId);
+        idUser = row.insertId;
+        
+        // Guardo el registro de un nuevo user en mongo creando un nuevo documento
+        StatisticsService.saveLogOrRegisterDate(idUser, 0) //regOrLog: 0/Registro ---- 1/Login
+        .then(() => {
+            //console.log('Documento guardado en Mongo');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        
+
         res.render('startSession', { // RUTA PLANTILLA Pagina incial
             pageTitle: 'login-page',
             error: false, 

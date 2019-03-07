@@ -3,6 +3,11 @@
 const User = require('../models/users');
 const formidable = require('../node_modules/formidable'); // Para poder manejar ficheros en la edición del perfil
 const Token = require('../util/Token'); // Cargamos el token
+const StatisticsService = require('../services/statisticsService');// Cargamos el servicio de mongo 
+const UserService = require('../services/usersService');
+const Section = require('../models/section');
+const Story = require('../models/story');
+
 
 
 
@@ -10,10 +15,57 @@ const Token = require('../util/Token'); // Cargamos el token
 exports.postRemoveUser = (req, res, next) => {
     
     const idUser = req.userId; 
-    /* Este id viene especificado en la ruta, la coge del HTML (que es variable dentro del action y coincide con el id). Params recoge lo último de la ruta */
+    
+    /* Antes de borrarlo es necesario actualizar los relatos y secciones a un author ANONYMOUS */
+
+    Story.setLikeAnonymousStory(idUser)
+    .then(() => { 
+        Section.setLikeAnonymousSection(idUser)
+        .then(() => { 
+            User.removeUser(idUser) 
+            .then(() => { 
+                res.redirect('/');
+            })
+        })
+    })
+    .catch(err => console.log(err));
+
+    /*
     User.removeUser(idUser) 
     .then(() => { 
         res.redirect('/');
+    })
+    .catch(err => console.log(err));
+    */
+};
+
+
+// Remove User
+exports.postBlockAccess = (req, res, next) => {
+    
+    const idUser = req.userId; 
+    let myToken = Token.buildToken(idUser);
+    const idUserToRemoveFromAdmin = req.params.userId;
+
+    User.blockAccess(idUserToRemoveFromAdmin) 
+    .then(() => { 
+        UserService.getAllUsers()
+        .then((users) => {
+            //console.log(users);
+            StatisticsService.getAllAccessStatistics()
+            .then((results) =>{
+                //console.log(results);
+                res.render('adminHome', { 
+                    pageTitle: 'adminHome',
+                    AllAccessStatistics : results,
+                    AllUsersInfo : users, 
+                    token : myToken,
+                }); 
+
+            })
+
+        })
+        .catch(err => {console.log(err);});    
     })
     .catch(err => console.log(err));
 };
@@ -31,7 +83,8 @@ exports.getProfile = (req, res, next) => {
                 
                 pageTitle: 'myProfile',
                 user: row[0], // Variable que puedo usar en la plantilla que tiene la info del usuario
-                token : Token.buildToken(idUser) // usamos el dato que es único para cada usuario a la hora de construir el token
+                token : Token.buildToken(idUser), // usamos el dato que es único para cada usuario a la hora de construir el token
+                
             });
     })
     .catch(err => console.log(err));

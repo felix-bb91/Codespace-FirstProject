@@ -34,7 +34,7 @@ function verifyParam(req, res, next) {
   
       // if everything is good, save to request for use in other routes
       req.userId = decoded.id;
-      /* Esto sirve para emter info en la req que luego podrá usar la siguiente ruta,
+      /* Esto sirve para meter info en la req que luego podrá usar la siguiente ruta,
       algo como el req.body por ejemplo, solo que en este caso somos nosotros los que
       creamos un parámetro en la request con el nombre userId y meto la info a 
       partir de la cual construí el token, que fue el id (mira build token) */
@@ -43,6 +43,13 @@ function verifyParam(req, res, next) {
   }
 
 
+
+
+
+
+
+  
+  // NO USADA
   function verifyToken(req, res, next) {
 
     // check header or url parameters or post parameters for token

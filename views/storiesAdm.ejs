@@ -1,0 +1,20 @@
+<div class="storiesAdm" id="storiesStatistics">
+    <h1>Información sobre los relatos</h1>
+    <div class="row d-flex justify-content-center stories">
+        <div class="allStoriesTitle col-sm-5">
+            <center><h2>Relatos</h2></center>
+            <% if (AllStoriesInfo.length > 0) { %>
+                <% for (let story of AllStoriesInfo) { %>
+                    <p class="storyTitle"><%= story.title %>  </p>
+                <% } %>
+            <% } %>       
+            </div>
+        <div class="totalNumStories col-sm-2">
+
+            <p class="storyTotal"><%= AllStoriesInfo.length %>  </p>
+            <p class="totalStoriesTitle">Número de realtos</p>
+            
+        </div> 
+    </div>   
+</div>
+<hr class="d-sm-none"/>

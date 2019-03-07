@@ -3,6 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+// Conexión a Mongo DB
+const dbConnMongo = require('./util/mongo');
+dbConnMongo();
+
+
+
 const errorController = require('./controllers/error');
 const startSessionRoute = require('./routes/startSession');
 const myProfileRoute = require('./routes/myProfile');

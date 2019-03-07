@@ -83,12 +83,21 @@ body{
 	max-height: 15rem;
 	position: relative;
 	overflow: hidden;
+	min-height: 10rem;
+	max-height: 10rem;
 }
+
+.sectionBody{
+	position: relative;
+	
+}
+
 .storyBody .read-more { 
 	position: absolute; 
 	bottom: 0; 
 	left: 0;
 	width: 100%; 
+	
 	text-align: center; 
 	margin: 0; padding: 30px 0; 
 	  

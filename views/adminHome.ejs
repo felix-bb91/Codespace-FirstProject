@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/goTop.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/goTop.js"></script>
+    
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+<div class="all">
+    <div class="row allRow">
+        <div class="col-sm-3 navbarAdminContainer">
+            <%- include('./adminNavbar.ejs') %>
+        </div>
+        <div class="col-sm-9 infoAdmin">
+            <!------------------------------------------------------->
+
+            <%- include('./generalInfoAdm.ejs') %>
+
+            <!------------------------------------------------------->
+
+            <%- include('./accessStadisticsAdm.ejs') %>
+
+            <!------------------------------------------------------->
+
+            <%- include('./storiesAdm.ejs') %>
+
+            <!------------------------------------------------------->
+
+            <%- include('./usersAdm.ejs') %>
+  
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+</body>
+
+</html>

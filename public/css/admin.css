@@ -1,0 +1,192 @@
+body {
+    position: relative;
+  }
+.affix {
+    top: 20px;
+    z-index: 9999 !important;
+}
+
+#generalInfo {
+    color: #fff; 
+    background-color: rgb(59, 91, 138);
+    height: 70vh;
+    margin: 2rem;
+    padding: 2rem;
+}
+#accessStatistics {
+    color: #fff; 
+    background-color:rgb(59, 91, 138);
+    height: 70vh;
+    margin: 2rem;
+    padding: 2rem;
+    
+}
+#storiesStatistics {
+    color: #fff; 
+    background-color:  rgb(59, 91, 138);
+    /*height: 70vh;*/
+    margin: 2rem;
+    padding: 2rem;
+}
+#usersStatistics {
+    color: #fff;
+    background-color: rgb(59, 91, 138);
+    
+    margin: 2rem;
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+@media screen and (max-width: 810px) {
+  #generalInfo, #accessStatistics, #storiesStatistics, #usersStatistics  {
+    margin-left: 150px;
+  }
+}
+
+
+.navbarAdminContainer{
+    padding: 0;
+}
+
+
+.all{
+    
+    padding: 0;
+}
+
+.allRow{
+    width: 100%;
+    height: 100%;
+}
+
+
+.navbarAdmin{
+    position: fixed;
+    min-width: 20%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: block;
+  
+}
+
+
+.navbarAdmin ul{
+    
+   height: 100%;
+}
+
+
+.navbarAdmin li{
+    height: 20%;
+    font-size: 1.3rem;
+    text-align: center;
+
+}
+
+
+.navbarAdmin a{
+    position:relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.usersAll{
+    width: 100%;
+    max-height: 100%;
+    padding: 1rem;
+    margin-left: 1.5rem;
+}
+.oneUserInfo{
+    padding: 1rem;
+    margin: 2rem;
+    
+    border: 0.05rem;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    background-color: rgba(48, 54, 146, 0.747);
+}
+.oneUserInfo p{
+
+    max-width: 100%;
+    overflow: hidden;
+}
+.accessInfoElement{
+    padding: 0.2rem;
+    margin: 1.7rem;
+    
+    border: 0.05rem;
+    border-style: solid;
+    border-color: rgb(250, 247, 247);
+    border-radius: 25px;
+    background-color: rgba(48, 54, 146, 0.747);
+
+}
+
+.numStatistics{
+    font-size: 2rem;    
+    text-align: center;
+    color: rgb(255, 255, 255);
+    
+}
+.textStatistics{
+    text-align: center;
+    color: rgb(255, 253, 253);
+}
+
+.userNameStatistics{
+    text-align: center;
+    font-size: 1.8rem; 
+}
+.removeButton{
+    
+
+}
+
+.allAccessContent{
+    
+   margin-top: 5%;
+}
+
+.stories{
+    margin: 1.5rem;
+}
+
+.allStoriesTitle{
+    text-align: center;
+}
+
+.storyTitle{
+    padding: 0.2rem;
+    margin: 1.7rem;
+    
+    border: 0.05rem;
+    border-style: solid;
+    border-color: rgb(250, 247, 247);
+    border-radius: 25px;
+    background-color: rgba(48, 54, 146, 0.747);
+    overflow: hidden;
+}
+
+.totalNumStories{
+    padding: 0.2rem;
+    margin: 1.7rem;
+    
+    border: 0.05rem;
+    border-style: solid;
+    border-color: rgb(250, 247, 247);
+    border-radius: 25px;
+    background-color: rgba(48, 54, 146, 0.747);
+    height: 100%;
+    text-align: center;
+}
+
+.storyTotal{
+    font-size: 2rem;
+}

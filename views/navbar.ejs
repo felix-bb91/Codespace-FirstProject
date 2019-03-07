@@ -1,3 +1,5 @@
+<div class="myToken" id="<%= token %>" style="display: none;"></div>
+
 <nav class="navbar navbar-inverse navbar-fixed-top"  id="navBar"> <!-- data-spy="affix" data-offset-top="290" 340-->
     <div class="container-fluid">
         <div class="navbar-header">
@@ -11,13 +13,13 @@
         <div id="myNavbar">
         <ul class="nav navbar-nav" >
             
-            <li class="active"><a href="/home" class="houseIcon"><i class="material-icons ">home</i></a></li>
+            <li class="active"><a href="/home/<%= token %>" class="houseIcon"><i class="material-icons ">home</i></a></li>
 
             
             <li class="dropdown ">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Relatos<span class="caret"></span></a>
                 <ul class="dropdown-menu menuStory" role="menu" aria-labelledby="menu1">
-                        <li><a href="/showAll">Ver todos</a></li>
+                        <li><a href="/showAll/<%= token %>">Ver todos</a></li>
                         <li role="presentation" class="divider"></li>
                         <li data-toggle="collapse" data-target="#tags">
                             <a href="#" data-toggle="modal" data-target="#myModalTags">Por Tags</a></li>
@@ -67,7 +69,7 @@
                         <li><a href="#">Por Contribuidor</a></li>
                 </ul>
             </li> 
-            <li><a href="/whoWeAre">¿Quiénes somos?</a></li>
+            <li><a href="/whoWeAre/<%= token %>"><i class="fa fa-info-circle" style="font-size:2.8rem"></i></a></li>
 
         </ul>
 
@@ -85,7 +87,7 @@
         <ul class="nav navbar-nav navbar-right">
             
             <!--href está en carpeta js publica navbar.js-->
-            <li><a class="myProfileNav2" href=""><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
+            <li><a class="myProfileNav2" href="/myProfile/<%= token %>"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
 
             <li><a href="/"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
         </ul>
